@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import NewCaregiver from './components/NewCaregiver.js'
+import ShowCaregivers from './components/ShowCaregivers.js'
+import UpdateCaregiver from './components/UpdateCaregiver.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+let baseURL = process.env.REACT_APP_BASEURL
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003'
+} else {
+  baseURL = 'https://our-Heroku-app-name.herokuapp.com'
+}
+console.log('current base URL:', baseURL)
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      caregivers: []
+    }
+    this.getCaregivers = this.getCaregivers.bind(this)
+    this.handleAddCaregiver = this.handleAddCaregiver.bind(this)
+  }
+    componentDidMount(){
+        this.getCaregivers()
+      }
+    async getCaregivers (){
+        try {
+          let response = await fetch(`${baseURL}/caregivers`)
+          let data = await response.json()
+          this.setState({caregivers: data})
+        }catch(e){
+          console.error(e)
+        }
+      }
+
+handleAddCaregiver(caregiver) {
+  const copyCaregivers = [caregiver, ...this.state.caregivers]
+    this.setState({
+      caregivers: copyCaregivers,
+    })
 }
 
-export default App;
+render () {
+  return (
+    <React.Fragment>
+    <h1>Main Page</h1>
+    <NewCaregiver />
+
+    <ShowCaregivers />
+
+    <UpdateCaregiver />
+    <h3>Brought to you by Main Pages, llc., a subsidiary of the NRJ (Nathaniel/Ric/Johnny) Corporation.</h3>
+    </React.Fragment>
+  )
+}
+}
+export default App
