@@ -12,7 +12,7 @@ class UpdateCaregiver extends React.Component {
               id="name"
             />
 
-            <input type="submit" value="Update Caregiver"/>
+            <input type="submit" class="button" value="Update Caregiver"/>
           </form>
       </div>
     )
