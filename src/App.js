@@ -24,9 +24,11 @@ class App extends React.Component {
     this.getCaregivers = this.getCaregivers.bind(this)
     this.handleAddCaregiver = this.handleAddCaregiver.bind(this)
   }
+
     componentDidMount(){
         this.getCaregivers()
       }
+
     async getCaregivers (){
         try {
           let response = await fetch(`${baseURL}/caregivers`)
@@ -37,12 +39,24 @@ class App extends React.Component {
         }
       }
 
-handleAddCaregiver(caregiver) {
-  const copyCaregivers = [caregiver, ...this.state.caregivers]
-    this.setState({
-      caregivers: copyCaregivers,
-    })
-}
+    async handleAddCaregiver(caregiver) {
+        try {
+            let response = await fetch(`${baseURL}/caregivers`, {
+                method: 'POST',
+                body: JSON.stringify(caregiver),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            let newCaregiver = await response.json()
+            const updatedCaregivers = [newCaregiver, ...this.state.caregivers]
+              this.setState({
+                caregivers: updatedCaregivers,
+              })
+        } catch(e) {
+            console.error(e);
+        }
+    }
 
 render () {
   return (
