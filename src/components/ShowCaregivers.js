@@ -10,7 +10,7 @@ class ShowCaregivers extends React.Component {
 
   render () {
     return (
-      <h1>ShowCaregivers route works</h1>
+      <h1>Caregiver cards</h1>
     )
   }
 }
