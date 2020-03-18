@@ -9,9 +9,14 @@ class ShowCaregivers extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      name: ''
+      showAbout: false
     }
+    this.toggleShowAbout = this.toggleShowAbout.bind(this)
   }
+
+  toggleShowAbout () {
+    this.setState({showAbout: !this.state.showAbout})
+}
 
   render () {
     return (
@@ -24,7 +29,13 @@ class ShowCaregivers extends React.Component {
           <Card.Body>
           <Card.Title>Name: {caregiver.contact.firstName} {caregiver.contact.lastName}</Card.Title>
           <Card.Text>
-          {caregiver.description}
+          <button onClick={this.toggleShowAbout}>More info</button>
+          {
+            this.state.showAbout
+            ? (caregiver.description)
+            : ("")
+          }
+
           </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
@@ -33,10 +44,10 @@ class ShowCaregivers extends React.Component {
           <ListGroupItem>Location: {caregiver.location}</ListGroupItem>
           <ListGroupItem>Rating: {caregiver.rating} stars</ListGroupItem>
           </ListGroup>
-          <Card.Body>
+          <Card.Footer>
           <Card.Link href="#">Edit</Card.Link>
           <Card.Link href="#">Delete</Card.Link>
-          </Card.Body>
+          </Card.Footer>
           </Card>
 
         )
