@@ -10,7 +10,16 @@ class ShowCaregivers extends React.Component {
 
   render () {
     return (
-      <h1>Caregiver cards</h1>
+        <div className="container">
+            <h1>Caregiver cards</h1>
+            <div>
+                {this.props.caregivers.map((caregiver, index) => {
+                    return(
+                        <h2>{caregiver.name}</h2>
+                    )
+                })}
+            </div>
+        </div>
     )
   }
 }
