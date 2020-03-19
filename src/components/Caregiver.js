@@ -38,8 +38,15 @@ toggleShowAbout() {
             <ListGroupItem>Rating: {this.props.caregiver.rating} stars</ListGroupItem>
             </ListGroup>
             <Card.Footer>
-            <Card.Link href="#">Edit</Card.Link>
+            <Card.Link
+                onClick={() => {
+                    this.props.toggleUpdateModal(this.props.caregiver)
+                }}>
+                Edit
+            </Card.Link>
+
             <Button variant="danger" onClick={() => this.props.deleteCaregiver(this.props.caregiver)}>Delete</Button>
+
             </Card.Footer>
             </Card>
         </>

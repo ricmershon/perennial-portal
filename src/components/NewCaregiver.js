@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Form, Row, Col, Button } from 'react-bootstrap'
+import { Container, Form, Col, Button } from 'react-bootstrap'
 
 class NewCaregiver extends React.Component {
     constructor (props) {
@@ -36,17 +36,18 @@ class NewCaregiver extends React.Component {
             webSite: this.state.webSite,
             services: this.state.services,
         }
-        console.log(careGiver);
         this.props.handleAddCaregiver(careGiver)
     }
 
     render () {
         return (
-            <Container>
+            <Container className="new-form rounded">
                 <h4>Add New Caregiver</h4>
                 <Form onSubmit={ this.handleSubmit }>
                     <Form.Group controlId="name">
+                        <Form.Label>Name</Form.Label>
                         <Form.Control
+                            size="sm"
                             type="text"
                             name="name"
                             value={ this.state.name }
@@ -55,7 +56,9 @@ class NewCaregiver extends React.Component {
                         />
                     </Form.Group>
                     <Form.Group controlId="description">
+                        <Form.Label>Description</Form.Label>
                         <Form.Control
+                            size="sm"
                             as="textarea"
                             rows="3"
                             type="text"
@@ -67,7 +70,9 @@ class NewCaregiver extends React.Component {
                     </Form.Group>
                     <Form.Row>
                         <Form.Group as={Col} controlId="phone">
+                            <Form.Label>Phone</Form.Label>
                             <Form.Control
+                                size="sm"
                                 type="text"
                                 name="phone"
                                 value={ this.state.phone }
@@ -76,8 +81,10 @@ class NewCaregiver extends React.Component {
                             />
                         </Form.Group>
                         <Form.Group as={Col} controlId="email">
+                            <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type="text"
+                                size="sm"
+                                type="email"
                                 name="email"
                                 value={ this.state.email }
                                 onChange={ this.handleChange }
@@ -87,7 +94,9 @@ class NewCaregiver extends React.Component {
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col} controlId="webSite">
+                            <Form.Label>Web site</Form.Label>
                             <Form.Control
+                                size="sm"
                                 type="text"
                                 name="webSite"
                                 value={ this.state.webSite }
@@ -96,7 +105,9 @@ class NewCaregiver extends React.Component {
                             />
                         </Form.Group>
                         <Form.Group as={Col} controlId="image">
+                            <Form.Label>Image URL</Form.Label>
                             <Form.Control
+                                size="sm"
                                 type="text"
                                 name="image"
                                 value={ this.state.image }
@@ -106,7 +117,9 @@ class NewCaregiver extends React.Component {
                         </Form.Group>
                     </Form.Row>
                     <Form.Group controlId="services">
+                        <Form.Label>Services</Form.Label>
                         <Form.Control
+                            size="sm"
                             type="text"
                             name="services"
                             value={ this.state.services }

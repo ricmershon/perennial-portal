@@ -13,7 +13,7 @@ let baseURL = process.env.REACT_APP_BASEURL
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
 } else {
-  baseURL = 'https://our-Heroku-app-name.herokuapp.com'
+  baseURL = 'https://perennial-portal-api.herokuapp.com'
 }
 console.log('current base URL:', baseURL)
 
@@ -23,13 +23,16 @@ class App extends React.Component {
     super(props)
     this.state = {
       caregivers: [],
-      showNewForm: false
+      caregiver: {},
+      showNewForm: false,
+      showUpdateModal: false
     }
     this.getCaregivers = this.getCaregivers.bind(this)
     this.handleAddCaregiver = this.handleAddCaregiver.bind(this)
     this.handleEditCaregiver = this.handleEditCaregiver.bind(this)
     this.deleteCaregiver = this.deleteCaregiver.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
+    this.toggleUpdateModal = this.toggleUpdateModal.bind(this)
   }
 
     componentDidMount(){ //populates caregivers list on load.
@@ -69,6 +72,7 @@ class App extends React.Component {
     }
 
     async handleEditCaregiver(caregiver) {
+        // console.log('inside handlecaregiver with', caregiver);
         try {
             let response = await fetch(`${baseURL}/perennial-api/${caregiver._id}`, {
                 method: 'PUT',
@@ -77,8 +81,9 @@ class App extends React.Component {
                     "Content-Type": "application/json"
                 }
             })
-            let updatedCaregiver = response.json()
-            let updatedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === updatedCaregiver._id)
+            let updatedCaregiver = await response.json()
+            let editedCaregiverId = caregiver._id
+            let updatedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === editedCaregiverId)
             let tempDatabase = this.state.caregivers
             tempDatabase[updatedCaregiverIndex] = updatedCaregiver
             this.setState({
@@ -107,8 +112,12 @@ class App extends React.Component {
     }
 
     toggleNewForm() {
-        console.log('toggleNewForm ');
         this.setState({ showNewForm: !this.state.showNewForm })
+    }
+
+    toggleUpdateModal(caregiverData) {
+        this.setState({ showUpdateModal: !this.state.showUpdateModal })
+        this.setState({ caregiver: caregiverData })
     }
 
     render () {
@@ -140,12 +149,21 @@ class App extends React.Component {
                     this.state.showNewForm ?
                     (<NewCaregiver
                         handleAddCaregiver={ this.handleAddCaregiver }
-                    />) : ''}
-<br />
+                    />) : ''
+                }
 
-                <ShowCaregivers caregivers={this.state.caregivers}
-                deleteCaregiver={this.deleteCaregiver}/>
-
+                {
+                    this.state.showUpdateModal ?
+                    (<UpdateCaregiver
+                        caregiver={ this.state.caregiver }
+                        handleEditCaregiver={ this.handleEditCaregiver }
+                    />) : ''
+                }
+          
+                <ShowCaregivers
+                    caregivers={this.state.caregivers}
+                    toggleUpdateModal={this.toggleUpdateModal}
+                    deleteCaregiver={this.deleteCaregiver}/>
 
             </React.Fragment>
         )
