@@ -19,7 +19,7 @@ class ShowCaregivers extends React.Component {
       {this.props.caregivers.map((caregiver, index) => {
         return(
 
-          <Caregiver caregiver={caregiver} index={index}/>
+          <Caregiver toggleUpdateModal={this.props.toggleUpdateModal} caregiver={caregiver} index={index}/>
         )
       })}
       </CardColumns>
