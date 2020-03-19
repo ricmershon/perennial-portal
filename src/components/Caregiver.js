@@ -1,7 +1,6 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import CardColumns from 'react-bootstrap/CardColumns'
+import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap'
 
 
 class Caregiver extends React.Component {
@@ -22,12 +21,12 @@ toggleShowAbout() {
         <>
             <Card bg="info" border="success" style={{width: '14rem'}} className="overflow-auto">
             <Card.Body>
-            <Card.Title>Name: {this.props.caregiver.contact.firstName} {this.props.caregiver.contact.lastName}</Card.Title>
+            <Card.Title>Name: {this.props.caregiver.name}</Card.Title>
             <Card.Text>
             <button onClick={this.toggleShowAbout}>More info</button>
             {
               this.state.showAbout
-              ? <div><br/>{this.props.caregiver.description}</div>
+              ? (this.props.caregiver.description)
               : ("")
             }
 
