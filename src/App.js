@@ -94,7 +94,7 @@ class App extends React.Component {
             let response = await fetch(`${baseURL}/perennial-api/${caregiver._id}`, {
                 method: 'DELETE'
             })
-            let deletedCaregiver = response.json()
+            let deletedCaregiver = await response.json()
             let deletedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === deletedCaregiver._id)
             let tempDatabase = this.state.caregivers
             tempDatabase.splice(deletedCaregiverIndex, 1)
