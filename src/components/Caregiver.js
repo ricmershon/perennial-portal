@@ -1,7 +1,5 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 class Caregiver extends React.Component {
@@ -41,7 +39,7 @@ toggleShowAbout() {
             </ListGroup>
             <Card.Footer>
             <Card.Link href="#">Edit</Card.Link>
-            <Card.Link href="#">Delete</Card.Link>
+            <Button variant="danger" onClick={() => this.props.deleteCaregiver(this.props.caregiver)}>Delete</Button>
             </Card.Footer>
             </Card>
         </>

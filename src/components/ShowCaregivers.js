@@ -19,7 +19,8 @@ class ShowCaregivers extends React.Component {
       {this.props.caregivers.map((caregiver, index) => {
         return(
 
-          <Caregiver caregiver={caregiver} index={index}/>
+          <Caregiver caregiver={caregiver} index={index}
+          deleteCaregiver={this.props.deleteCaregiver}/>
         )
       })}
       </CardColumns>

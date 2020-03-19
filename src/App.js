@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
+import { Container, Row, Col, Image, Jumbotron, Button, Navbar, Nav } from 'react-bootstrap'
 import NewCaregiver from './components/NewCaregiver.js'
 import ShowCaregivers from './components/ShowCaregivers.js'
 import UpdateCaregiver from './components/UpdateCaregiver.js'
@@ -126,7 +126,14 @@ class App extends React.Component {
                         </Navbar.Collapse>
 
                     </Navbar>
-                    <br />
+                    <Jumbotron>
+          <h1>Welcome to Perennial Portal</h1>
+          <Image src="https://cdn.cheapism.com/images/nursing-home.2e16d0ba.fill-1440x605.jpg" fluid />
+          <p>
+    Since this is Ric's idea, he will be providing you with a short description about this awesome App here! Stay tuned!
+  </p>
+
+        </Jumbotron>
                 </Container>
 
                 {
@@ -136,7 +143,8 @@ class App extends React.Component {
                     />) : ''}
 <br />
 
-                <ShowCaregivers caregivers={this.state.caregivers}/>
+                <ShowCaregivers caregivers={this.state.caregivers}
+                deleteCaregiver={this.deleteCaregiver}/>
 
 
             </React.Fragment>
