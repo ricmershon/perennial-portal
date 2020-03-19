@@ -120,22 +120,13 @@ class App extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto text-right">
-                                <Nav.Link href="#home">Home</Nav.Link>
+                                <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link onSelect={ this.toggleNewForm } href="#link">New</Nav.Link>
-                                <Nav.Link href="#link">Edit</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
 
                     </Navbar>
-                    <Jumbotron>
-                        <h1>Big Box at Top</h1>
-                        <p>
-                            This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-                        </p>
-                        <p>
-                            <Button variant="primary">Click to learn the answer to Life, The Universe, and Everything</Button>
-                        </p>
-                    </Jumbotron>
+                    <br />
                 </Container>
 
                 {
@@ -143,7 +134,7 @@ class App extends React.Component {
                     (<NewCaregiver
                         handleAddCaregiver={ this.handleAddCaregiver }
                     />) : ''}
-
+<br />
 
                 <ShowCaregivers caregivers={this.state.caregivers}/>
 
