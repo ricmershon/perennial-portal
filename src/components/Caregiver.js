@@ -1,7 +1,5 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 class Caregiver extends React.Component {
@@ -40,8 +38,13 @@ toggleShowAbout() {
             <ListGroupItem>Rating: {this.props.caregiver.rating} stars</ListGroupItem>
             </ListGroup>
             <Card.Footer>
-            <Card.Link href="#">Edit</Card.Link>
-            <Card.Link href="#">Delete</Card.Link>
+            <Button
+                variant="primary"
+                onClick={() => this.props.toggleUpdateModal(this.props.caregiver)}>
+                Edit
+            </Button>
+            <Button variant="danger" onClick={() => this.props.deleteCaregiver(this.props.caregiver)}>Delete</Button>
+
             </Card.Footer>
             </Card>
         </>
