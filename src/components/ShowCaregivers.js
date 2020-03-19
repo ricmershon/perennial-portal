@@ -11,7 +11,6 @@ class ShowCaregivers extends React.Component {
     }
   }
 
-
   render () {
     return (
       <div className="container">
@@ -19,6 +18,7 @@ class ShowCaregivers extends React.Component {
 
       {this.props.caregivers.map((caregiver, index) => {
         return(
+
           <Caregiver caregiver={caregiver} index={index}/>
         )
       })}
