@@ -23,13 +23,16 @@ class App extends React.Component {
     super(props)
     this.state = {
       caregivers: [],
-      showNewForm: false
+      caregiver: {},
+      showNewForm: false,
+      showUpdateModal: false
     }
     this.getCaregivers = this.getCaregivers.bind(this)
     this.handleAddCaregiver = this.handleAddCaregiver.bind(this)
     this.handleEditCaregiver = this.handleEditCaregiver.bind(this)
     this.deleteCaregiver = this.deleteCaregiver.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
+    this.toggleUpdateModal = this.toggleUpdateModal.bind(this)
   }
 
     componentDidMount(){ //populates caregivers list on load.
@@ -69,6 +72,7 @@ class App extends React.Component {
     }
 
     async handleEditCaregiver(caregiver) {
+        console.log('inside handlecaregiver with', caregiver);
         try {
             let response = await fetch(`${baseURL}/perennial-api/${caregiver._id}`, {
                 method: 'PUT',
@@ -107,8 +111,12 @@ class App extends React.Component {
     }
 
     toggleNewForm() {
-        console.log('toggleNewForm ');
         this.setState({ showNewForm: !this.state.showNewForm })
+    }
+
+    toggleUpdateModal(caregiverData) {
+        this.setState({ showUpdateModal: !this.state.showUpdateModal })
+        this.setState({ caregiver: caregiverData })
     }
 
     render () {
@@ -142,10 +150,21 @@ class App extends React.Component {
                     this.state.showNewForm ?
                     (<NewCaregiver
                         handleAddCaregiver={ this.handleAddCaregiver }
-                    />) : ''}
+                    />) : ''
+                }
 
+                {
+                    this.state.showUpdateModal ?
+                    (<UpdateCaregiver
+                        caregiver={ this.state.caregiver }
+                        handleEditCaregiver={ this.handleEditCaregiver }
+                    />) : ''
+                }
 
-                <ShowCaregivers caregivers={this.state.caregivers}/>
+                <ShowCaregivers
+                    caregivers={this.state.caregivers}
+                    toggleUpdateModal={this.toggleUpdateModal}
+                />
 
 
             </React.Fragment>
