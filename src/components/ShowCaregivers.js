@@ -27,7 +27,7 @@ class ShowCaregivers extends React.Component {
         return(
           <Card bg="info" border="success" style={{width: '14rem'}} className="overflow-auto">
           <Card.Body>
-          <Card.Title>Name: {caregiver.contact.firstName} {caregiver.contact.lastName}</Card.Title>
+          <Card.Title>{ caregiver.name }</Card.Title>
           <Card.Text>
           <button onClick={this.toggleShowAbout}>More info</button>
           {

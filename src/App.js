@@ -1,12 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+
+import { Container, Row, Col, Button, Jumbotron, Navbar, Nav } from 'react-bootstrap'
 import NewCaregiver from './components/NewCaregiver.js'
 import ShowCaregivers from './components/ShowCaregivers.js'
 import UpdateCaregiver from './components/UpdateCaregiver.js'
@@ -27,12 +22,14 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      caregivers: []
+      caregivers: [],
+      showNewForm: false
     }
     this.getCaregivers = this.getCaregivers.bind(this)
     this.handleAddCaregiver = this.handleAddCaregiver.bind(this)
     this.handleEditCaregiver = this.handleEditCaregiver.bind(this)
     this.deleteCaregiver = this.deleteCaregiver.bind(this)
+    this.toggleNewForm = this.toggleNewForm.bind(this)
   }
 
     componentDidMount(){ //populates caregivers list on load.
@@ -52,6 +49,7 @@ class App extends React.Component {
       }
 
     async handleAddCaregiver(caregiver) {
+        this.setState({ showNewForm: false })
         try {
             let response = await fetch(`${baseURL}/perennial-api`, {
                 method: 'POST',
@@ -108,40 +106,51 @@ class App extends React.Component {
         }
     }
 
-render () {
-  return (
-    <React.Fragment>
-      <Container>
-        <Navbar bg="primary" expand="lg" variant="dark">
-          <Navbar.Brand href="#home">Perennial Portal</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
- <Navbar.Collapse id="basic-navbar-nav">
-   <Nav className="mr-auto text-right">
-     <Nav.Link href="#home">Home</Nav.Link>
-     <Nav.Link href="#link">New</Nav.Link>
-     <Nav.Link href="#link">Edit</Nav.Link>
-     </Nav>
-     </Navbar.Collapse>
+    toggleNewForm() {
+        console.log('toggleNewForm ');
+        this.setState({ showNewForm: !this.setState.showNewForm })
+    }
 
-        </Navbar>
-        <Jumbotron>
-          <h1>Big Box at Top</h1>
-          <p>
-    This is a simple hero unit, a simple jumbotron-style component for calling
-    extra attention to featured content or information.
-  </p>
-  <p>
-    <Button variant="primary">Click to learn the answer to Life, The Universe, and Everything</Button>
-  </p>
-        </Jumbotron>
-      </Container>
+    render () {
+        return (
+            <React.Fragment>
+                <Container>
+                    <Navbar bg="primary" expand="lg" variant="dark">
+                        <Navbar.Brand href="#home">Perennial Portal</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto text-right">
+                                <Nav.Link href="#home">Home</Nav.Link>
+                                <Nav.Link onSelect={ this.toggleNewForm } href="#link">New</Nav.Link>
+                                <Nav.Link href="#link">Edit</Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+
+                    </Navbar>
+                    <Jumbotron>
+                        <h1>Big Box at Top</h1>
+                        <p>
+                            This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+                        </p>
+                        <p>
+                            <Button variant="primary">Click to learn the answer to Life, The Universe, and Everything</Button>
+                        </p>
+                    </Jumbotron>
+                </Container>
+
+                {
+                    this.state.showNewForm ?
+                    (<NewCaregiver
+                        handleAddCaregiver={ this.handleAddCaregiver }
+                    />) : ''}
 
 
-    <ShowCaregivers caregivers={this.state.caregivers}/>
+                <ShowCaregivers caregivers={this.state.caregivers}/>
 
 
-    </React.Fragment>
-  )
+            </React.Fragment>
+        )
+    }
 }
-}
+
 export default App
