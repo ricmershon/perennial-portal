@@ -10,11 +10,11 @@ import UpdateCaregiver from './components/UpdateCaregiver.js'
 let baseURL = process.env.REACT_APP_BASEURL
 
 // Determines baseURL for dev or deployment
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
-} else {
-  baseURL = 'https://perennial-portal-api.herokuapp.com/'
-}
+// if (process.env.NODE_ENV === 'development') {
+//   baseURL = 'http://localhost:3003'
+// } else {
+  baseURL = 'https://perennial-portal-api.herokuapp.com'
+// }
 console.log('current base URL:', baseURL)
 
 
