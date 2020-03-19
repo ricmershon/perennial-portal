@@ -1,6 +1,5 @@
 import React from 'react'
-import CardColumns from 'react-bootstrap/CardColumns'
-import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap'
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 class Caregiver extends React.Component {
@@ -26,7 +25,7 @@ toggleShowAbout() {
             <button onClick={this.toggleShowAbout}>More info</button>
             {
               this.state.showAbout
-              ? (this.props.caregiver.description)
+              ? <div><br/>{this.props.caregiver.description}</div>
               : ("")
             }
 
@@ -40,7 +39,7 @@ toggleShowAbout() {
             </ListGroup>
             <Card.Footer>
             <Card.Link href="#">Edit</Card.Link>
-            <Card.Link href="#">Delete</Card.Link>
+            <Button variant="danger" onClick={() => this.props.deleteCaregiver(this.props.caregiver)}>Delete</Button>
             </Card.Footer>
             </Card>
         </>
