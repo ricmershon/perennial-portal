@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Container, Row, Col, Button, Jumbotron, Navbar, Nav } from 'react-bootstrap'
+import { Container, Row, Col, Image, Jumbotron, Button, Navbar, Nav } from 'react-bootstrap'
 import NewCaregiver from './components/NewCaregiver.js'
 import ShowCaregivers from './components/ShowCaregivers.js'
 import UpdateCaregiver from './components/UpdateCaregiver.js'
@@ -120,22 +120,20 @@ class App extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto text-right">
-                                <Nav.Link href="#home">Home</Nav.Link>
+                                <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link onSelect={ this.toggleNewForm } href="#link">New</Nav.Link>
-                                <Nav.Link href="#link">Edit</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
 
                     </Navbar>
                     <Jumbotron>
-                        <h1>Big Box at Top</h1>
-                        <p>
-                            This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-                        </p>
-                        <p>
-                            <Button variant="primary">Click to learn the answer to Life, The Universe, and Everything</Button>
-                        </p>
-                    </Jumbotron>
+          <h1>Welcome to Perennial Portal</h1>
+          <Image src="https://cdn.cheapism.com/images/nursing-home.2e16d0ba.fill-1440x605.jpg" fluid />
+          <p>
+    Since this is Ric's idea, he will be providing you with a short description about this awesome App here! Stay tuned!
+  </p>
+
+        </Jumbotron>
                 </Container>
 
                 {
@@ -143,9 +141,10 @@ class App extends React.Component {
                     (<NewCaregiver
                         handleAddCaregiver={ this.handleAddCaregiver }
                     />) : ''}
+<br />
 
-
-                <ShowCaregivers caregivers={this.state.caregivers}/>
+                <ShowCaregivers caregivers={this.state.caregivers}
+                deleteCaregiver={this.deleteCaregiver}/>
 
 
             </React.Fragment>
