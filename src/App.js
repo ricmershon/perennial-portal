@@ -108,7 +108,7 @@ class App extends React.Component {
 
     toggleNewForm() {
         console.log('toggleNewForm ');
-        this.setState({ showNewForm: !this.setState.showNewForm })
+        this.setState({ showNewForm: !this.state.showNewForm })
     }
 
     render () {
