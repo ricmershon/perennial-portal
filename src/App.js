@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Container, Row, Col, Button, Jumbotron, Navbar, Nav } from 'react-bootstrap'
+import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
 import NewCaregiver from './components/NewCaregiver.js'
 import ShowCaregivers from './components/ShowCaregivers.js'
 import UpdateCaregiver from './components/UpdateCaregiver.js'
