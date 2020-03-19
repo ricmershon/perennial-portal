@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Container, Row, Col, Image, Jumbotron, Button, Navbar, Nav } from 'react-bootstrap'
+import { Container, Image, Jumbotron, Navbar, Nav } from 'react-bootstrap'
 import NewCaregiver from './components/NewCaregiver.js'
 import ShowCaregivers from './components/ShowCaregivers.js'
 import UpdateCaregiver from './components/UpdateCaregiver.js'
@@ -159,7 +159,7 @@ class App extends React.Component {
                         handleEditCaregiver={ this.handleEditCaregiver }
                     />) : ''
                 }
-          
+
                 <ShowCaregivers
                     caregivers={this.state.caregivers}
                     toggleUpdateModal={this.toggleUpdateModal}

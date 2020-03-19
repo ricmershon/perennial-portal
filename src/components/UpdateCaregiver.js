@@ -30,6 +30,13 @@ class UpdateCaregiver extends React.Component {
 
     handleChange(event) {
         this.setState ({ [event.currentTarget.id]: event.currentTarget.value })
+        if (event.currentTarget.id === 'takingNewClients') {
+            if (event.currentTarget.checked) {
+                this.setState({ takingNewClients: true })
+            } else {
+                this.setState({ takingNewClients: false })
+            }
+        }
     }
 
     handleSubmit(event) {
@@ -43,7 +50,9 @@ class UpdateCaregiver extends React.Component {
             email: this.state.email,
             webSite: this.state.webSite,
             services: this.state.services,
+            takingNewClients: this.state.takingNewClients
         }
+        console.log(careGiver);
         this.props.handleEditCaregiver(careGiver)
     }
 
@@ -142,7 +151,7 @@ class UpdateCaregiver extends React.Component {
                             <Form.Check
                                 type="checkbox"
                                 name="takingNewClients"
-                                value={ this.state.takingNewClients }
+                                checked={ this.state.takingNewClients }
                                 onChange={ this.handleChange }
                                 label="Taking new clients"
                                 />
