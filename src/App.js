@@ -13,7 +13,7 @@ let baseURL = process.env.REACT_APP_BASEURL
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
 } else {
-  baseURL = 'https://our-Heroku-app-name.herokuapp.com'
+  baseURL = 'https://perennial-portal-api.herokuapp.com/'
 }
 console.log('current base URL:', baseURL)
 
