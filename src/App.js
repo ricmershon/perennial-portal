@@ -10,9 +10,9 @@ import UpdateCaregiver from './components/UpdateCaregiver.js'
 let baseURL = process.env.REACT_APP_BASEURL
 
 // Determines baseURL for dev or deployment
-// if (process.env.NODE_ENV === 'development') {
-//   baseURL = 'http://localhost:3003'
-// } else {
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003'
+} else {
   baseURL = 'https://perennial-portal-api.herokuapp.com'
 // }
 console.log('current base URL:', baseURL)
@@ -141,10 +141,6 @@ class App extends React.Component {
                     this.state.showNewForm ?
                     (<NewCaregiver
                         handleAddCaregiver={ this.handleAddCaregiver }
-<<<<<<< HEAD
-                    />) : ''}
-<br />
-=======
                     />) : ''
                 }
 
@@ -155,7 +151,6 @@ class App extends React.Component {
                         handleEditCaregiver={ this.handleEditCaregiver }
                     />) : ''
                 }
->>>>>>> 26b051259f0b220d9294c1ab3a033b5733beae21
 
                 <ShowCaregivers
                     caregivers={this.state.caregivers}
@@ -167,5 +162,3 @@ class App extends React.Component {
         )
     }
 }
-
-export default App
