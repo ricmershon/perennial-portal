@@ -44,7 +44,6 @@ class UpdateCaregiver extends React.Component {
             webSite: this.state.webSite,
             services: this.state.services,
         }
-        console.log('About to update', careGiver);
         this.props.handleEditCaregiver(careGiver)
     }
 

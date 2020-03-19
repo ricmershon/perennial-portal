@@ -72,7 +72,7 @@ class App extends React.Component {
     }
 
     async handleEditCaregiver(caregiver) {
-        console.log('inside handlecaregiver with', caregiver);
+        // console.log('inside handlecaregiver with', caregiver);
         try {
             let response = await fetch(`${baseURL}/perennial-api/${caregiver._id}`, {
                 method: 'PUT',
@@ -81,8 +81,9 @@ class App extends React.Component {
                     "Content-Type": "application/json"
                 }
             })
-            let updatedCaregiver = response.json()
-            let updatedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === updatedCaregiver._id)
+            let updatedCaregiver = await response.json()
+            let editedCaregiverId = caregiver._id
+            let updatedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === editedCaregiverId)
             let tempDatabase = this.state.caregivers
             tempDatabase[updatedCaregiverIndex] = updatedCaregiver
             this.setState({
@@ -98,7 +99,7 @@ class App extends React.Component {
             let response = await fetch(`${baseURL}/perennial-api/${caregiver._id}`, {
                 method: 'DELETE'
             })
-            let deletedCaregiver = response.json()
+            let deletedCaregiver = await response.json()
             let deletedCaregiverIndex = this.state.caregivers.findIndex(caregiver => caregiver._id === deletedCaregiver._id)
             let tempDatabase = this.state.caregivers
             tempDatabase.splice(deletedCaregiverIndex, 1)
