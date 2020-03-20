@@ -20,7 +20,7 @@ toggleShowAbout() {
         <>
             <Card bg="info" border="success" style={{width: '14rem'}} className="overflow-auto">
             <Card.Body>
-            <Card.Title>Name: {this.props.caregiver.name}</Card.Title>
+            <Card.Title>{this.props.caregiver.name}</Card.Title>
             <Card.Text>
             <button onClick={this.toggleShowAbout}>More info</button>
             {
