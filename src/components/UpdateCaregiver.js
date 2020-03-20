@@ -45,6 +45,7 @@ class UpdateCaregiver extends React.Component {
         const careGiver = {
             _id: this.state._id,
             name: this.state.name,
+            location: this.state.location,
             description: this.state.description,
             phone: this.state.phone,
             email: this.state.email,
@@ -72,7 +73,6 @@ class UpdateCaregiver extends React.Component {
                                 name="name"
                                 value={ this.state.name }
                                 onChange={ this.handleChange }
-                                placeholder="name"
                             />
                         </Form.Group>
                         <Form.Group controlId="description">
@@ -85,7 +85,6 @@ class UpdateCaregiver extends React.Component {
                                 name="description"
                                 value={ this.state.description }
                                 onChange={ this.handleChange }
-                                placeholder="description"
                             />
                         </Form.Group>
                         <Form.Row>
@@ -97,7 +96,6 @@ class UpdateCaregiver extends React.Component {
                                     name="phone"
                                     value={ this.state.phone }
                                     onChange={ this.handleChange }
-                                    placeholder="phone"
                                 />
                             </Form.Group>
                             <Form.Group as={Col} controlId="email">
@@ -108,7 +106,16 @@ class UpdateCaregiver extends React.Component {
                                     name="email"
                                     value={ this.state.email }
                                     onChange={ this.handleChange }
-                                    placeholder="email"
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col} controlId="location">
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control
+                                    size="sm"
+                                    type="text"
+                                    name="location"
+                                    value={ this.state.location }
+                                    onChange={ this.handleChange }
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -121,7 +128,6 @@ class UpdateCaregiver extends React.Component {
                                     name="webSite"
                                     value={ this.state.webSite }
                                     onChange={ this.handleChange }
-                                    placeholder="website URL"
                                 />
                             </Form.Group>
                             <Form.Group as={Col} controlId="image">
@@ -132,7 +138,6 @@ class UpdateCaregiver extends React.Component {
                                     name="image"
                                     value={ this.state.image }
                                     onChange={ this.handleChange }
-                                    placeholder="image URL"
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -144,7 +149,6 @@ class UpdateCaregiver extends React.Component {
                                 name="services"
                                 value={ this.state.services }
                                 onChange={ this.handleChange }
-                                placeholder="services"
                             />
                         </Form.Group>
                         <Form.Group controlId="takingNewClients">
